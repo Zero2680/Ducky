@@ -132,15 +132,11 @@ class Boss(Objeto):
 			self.direcciony = 0
 	
 	def Caparazones(self, enemigo):
-		if Personaje.check_colisiones(self, plataforma) == True:
-			plataforma.vidas -= 1
 		self.disparo1.Movimiento_Caparazon(enemigo)
 		self.disparo2.Movimiento_Caparazon(enemigo)
 		self.disparo3.Movimiento_Caparazon(enemigo)
 
 	def Murcielagos(self):
-		if Personaje.check_colisiones(self, plataforma) == True:
-			plataforma.vidas -= 1
 		self.disparo1.Movimiento_Murcielago()
 		self.disparo2.Movimiento_Murcielago()
 		self.disparo3.Movimiento_Murcielago()
@@ -149,8 +145,6 @@ class Boss(Objeto):
 		self.disparo6.Movimiento_Murcielago()
 
 	def Medusas(self):
-		if Personaje.check_colisiones(self, plataforma) == True:
-			plataforma.vidas -= 1
 		self.disparo1.Movimiento_Medusa()
 		self.disparo2.Movimiento_Medusa()
 		self.disparo3.Movimiento_Medusa()
@@ -161,6 +155,9 @@ class Boss(Objeto):
 	def Tentaculos(self):
 		self.tentaculo1.Movimiento_Tentaculo()
 		self.tentaculo2.Movimiento_Tentaculo()
+	
+	def Platanos(self):
+		self.disparo1.Movimiento_Platano()
 
 class Huevo(Objeto):
 	def __init__(self, x, y, ancho, largo, color , vidas, direccionx, direcciony):
@@ -360,6 +357,33 @@ class Disparo(Objeto):
 		if self.x > 1280 or self.x < 0:
 			tent = 2
 		self.DibujarObjeto()
+	
+	def Movimiento_Platano(self): #GIROS
+		global plat
+		if Personaje.check_colisiones(self, plataforma) == True:
+			plataforma.vidas -= 1
+		if self.direccionx == 1:
+			self.x += 1
+		if self.direccionx == 0:
+			self.x -= 1
+		if self.direcciony == 1:
+			self.y += 1
+		if self.direcciony == 0:
+			self.y -= 1
+		#self.x -= 0.5
+		plat += 1
+		if self.y <= 0:
+			self.direcciony = 1
+		if self.y >= 720:
+			self.direcciony = 0
+		if self.x <= 0 and self.direccionx == 0:
+			self.x = 1280
+		if plat >= 720:
+			if self.direccionx == 1:
+				self.direccionx = 0
+			elif self.direccionx == 0:
+				self.direccionx = 1
+			plat = 0
 
 estanque = transform.scale(image.load("juego_images/fondo.jpg").convert(), (1280, 857))
 fondo = estanque
@@ -387,6 +411,9 @@ medusa_boss2 = transform.scale(image.load("juego_images/medusa_boss2.png"), (300
 medusa1 = transform.scale(image.load("juego_images/medusa1.png"), (50, 50))
 medusa2 = transform.scale(image.load("juego_images/medusa2.png"), (50, 50))
 medusa3 = transform.scale(image.load("juego_images/medusa3.png"), (50, 50))
+selva = transform.scale(image.load("juego_images/selva.jpg").convert(), (1280, 720))
+mono = transform.scale(image.load("juego_images/mono.png"), (300, 300))
+platano = transform.scale(image.load("juego_images/platano.png"), (50, 50))
 animacion_pato = 0
 animacion_boss = 0
 animacion_disparo = 0
@@ -396,7 +423,7 @@ level = 1
 z = 0
 
 while True:
-	global x1, y1, x2, y2, x3, y3, boss_attack, y_medusa_aux, tent
+	global x1, y1, x2, y2, x3, y3, boss_attack, y_medusa_aux, tent, plat
 	if z == 0:
 		x1 = 0
 		y1 = 0
@@ -407,6 +434,7 @@ while True:
 		boss_attack = 0
 		y_medusa_aux = 0
 		tent = 0
+		plat = 0
 		z = 1
 	animacion_pato += 1
 	animacion_boss += 1
@@ -447,7 +475,21 @@ while True:
 		boss2 = medusa_boss2
 		disparo1 = medusa1
 		disparo2 = medusa2
+		next_boss1 = mono
+		next_boss2 = mono
 		z = 4
+	if level == 4 and z == 4:
+		fondo = selva
+		enemigo.x = 540
+		enemigo.y = 50
+		boss1 = mono
+		boss2 = mono
+		disparo1 = platano
+		disparo2 = platano
+		enemigo.disparo1.y = 0
+		enemigo.disparo1.x = 640
+		plat = enemigo.disparo1.x
+		z = 5
 	if enemigo.vidas <= 0:
 		level = 2
 	if level == 1:
@@ -496,6 +538,8 @@ while True:
 			animacion_disparo = 30
 		elif y_medusa_aux >= 600:
 			animacion_disparo = 0
+	if level == 4:
+		enemigo.Platanos()
 	#ANIMACION HUEVO
 	screen.blit(huevo, [plataforma.huevo1.x-20, plataforma.huevo1.y-20])
 	screen.blit(huevo, [plataforma.huevo2.x-20, plataforma.huevo2.y-20])
@@ -578,3 +622,5 @@ while True:
 				level = 2
 			if evento.key == K_UP:
 				level = 3
+			if evento.key == K_LEFT:
+				level = 4
