@@ -86,6 +86,8 @@ class Boss(Objeto):
 		self.disparo4 = Disparo(0, 210, 20, 20, (255,0,0), 1, 1, randrange(0,2))
 		self.disparo5 = Disparo(-140, 210, 20, 20, (255,0,0), 1, 1, randrange(0,2))
 		self.disparo6 = Disparo(280, 210, 20, 20, (255,0,0), 1, 1, randrange(0,2))
+		self.disparo7 = Disparo(360, 720, 20, 20, (255,0,0), 720, 0, 0)
+		self.disparo8 = Disparo(720, 360, 20, 20, (255,0,0), 1080, 0, 1)
 		self.tentaculo1 = Disparo(plataforma.x-250, 0, 20, 720, (255,0,0), 1, 1, 0)
 		self.tentaculo2 = Disparo(plataforma.x+250, 0, 20, 720, (255,0,0), 1, 1, 0)
 	
@@ -158,6 +160,13 @@ class Boss(Objeto):
 	
 	def Platanos(self):
 		self.disparo1.Movimiento_Platano()
+		self.disparo2.Movimiento_Platano()
+		self.disparo3.Movimiento_Platano()
+		self.disparo4.Movimiento_Platano()
+		self.disparo5.Movimiento_Platano()
+		self.disparo6.Movimiento_Platano()
+		self.disparo7.Movimiento_Platano()
+		self.disparo8.Movimiento_Platano()
 
 class Huevo(Objeto):
 	def __init__(self, x, y, ancho, largo, color , vidas, direccionx, direcciony):
@@ -362,6 +371,7 @@ class Disparo(Objeto):
 		global plat
 		if Personaje.check_colisiones(self, plataforma) == True:
 			plataforma.vidas -= 1
+			self.x += 1500
 		if self.direccionx == 1:
 			self.x += 1
 		if self.direccionx == 0:
@@ -371,19 +381,22 @@ class Disparo(Objeto):
 		if self.direcciony == 0:
 			self.y -= 1
 		#self.x -= 0.5
-		plat += 1
+		self.vidas += 1
 		if self.y <= 0:
 			self.direcciony = 1
 		if self.y >= 720:
 			self.direcciony = 0
-		if self.x <= 0 and self.direccionx == 0:
-			self.x = 1280
-		if plat >= 720:
+		'''if self.x <= 0 and self.direccionx == 0:
+			self.x = 1280'''
+		if self.vidas == 360 or self.vidas == 1080:
 			if self.direccionx == 1:
 				self.direccionx = 0
 			elif self.direccionx == 0:
 				self.direccionx = 1
-			plat = 0
+		if self.vidas == 1440:
+			self.vidas = 0
+			if self.x >= 1500:
+				self.x -= 1500
 
 estanque = transform.scale(image.load("juego_images/fondo.jpg").convert(), (1280, 857))
 fondo = estanque
@@ -392,6 +405,8 @@ pato01 = transform.scale(image.load("juego_images/pato01.png"), (50, 50))
 pato11 = transform.scale(image.load("juego_images/pato11.png"), (50, 50))
 pato02 = transform.scale(image.load("juego_images/pato02.png"), (50, 50))
 pato12 = transform.scale(image.load("juego_images/pato12.png"), (50, 50))
+corazon1 = transform.scale(image.load("juego_images/corazon1.png"), (40, 40))
+corazon2 = transform.scale(image.load("juego_images/corazon2.png"), (40, 40))
 enemigo = Boss(540, 210, 200, 200,(255,255,255), 1000, 1, 1)
 tortuga1 = transform.scale(image.load("juego_images/tortuga1.png"), (300, 300))
 tortuga2 = transform.scale(image.load("juego_images/tortuga2.png"), (300, 300))
@@ -417,13 +432,14 @@ platano = transform.scale(image.load("juego_images/platano.png"), (50, 50))
 animacion_pato = 0
 animacion_boss = 0
 animacion_disparo = 0
+animacion_corazon = 0
 x_boss = 65
 y_boss = 65
 level = 1
 z = 0
 
 while True:
-	global x1, y1, x2, y2, x3, y3, boss_attack, y_medusa_aux, tent, plat
+	global x1, y1, x2, y2, x3, y3, boss_attack, y_medusa_aux, tent
 	if z == 0:
 		x1 = 0
 		y1 = 0
@@ -434,11 +450,11 @@ while True:
 		boss_attack = 0
 		y_medusa_aux = 0
 		tent = 0
-		plat = 0
 		z = 1
 	animacion_pato += 1
 	animacion_boss += 1
 	animacion_disparo += 1
+	animacion_corazon += 1
 	boss_attack += 1
 	plataforma.Movimiento()
 	if level == 1 and z == 1:
@@ -487,14 +503,40 @@ while True:
 		disparo1 = platano
 		disparo2 = platano
 		enemigo.disparo1.y = 0
-		enemigo.disparo1.x = 640
-		plat = enemigo.disparo1.x
+		enemigo.disparo1.x = 920
+		enemigo.disparo1.vidas = 0
+		enemigo.disparo1.direccionx = 0
+		enemigo.disparo1.direcciony = 1
+		enemigo.disparo2.y = 360
+		enemigo.disparo2.x = 560
+		enemigo.disparo2.vidas = 360
+		enemigo.disparo2.direccionx = 1
+		enemigo.disparo2.direcciony = 1
+		enemigo.disparo3.y = 720
+		enemigo.disparo3.x = 920
+		enemigo.disparo3.vidas = 720
+		enemigo.disparo3.direccionx = 1
+		enemigo.disparo3.direcciony = 0
+		enemigo.disparo4.y = 360
+		enemigo.disparo4.x = 1280
+		enemigo.disparo4.vidas = 1080
+		enemigo.disparo4.direccionx = 0
+		enemigo.disparo4.direcciony = 0
+		enemigo.disparo5.y = 0
+		enemigo.disparo5.x = 360
+		enemigo.disparo5.vidas = 0
+		enemigo.disparo5.direccionx = 1
+		enemigo.disparo5.direcciony = 1
+		enemigo.disparo6.y = 360
+		enemigo.disparo6.x = 0
+		enemigo.disparo6.vidas = 360
+		enemigo.disparo6.direccionx = 1
+		enemigo.disparo6.direcciony = 0
 		z = 5
 	if enemigo.vidas <= 0:
 		level = 2
-	if level == 1:
-		screen.blit(next_boss1, [0, 0])
-		screen.blit(next_boss2, [0, 0])
+	screen.blit(next_boss1, [0, 0])
+	screen.blit(next_boss2, [0, 0])
 	screen.blit(fondo, [0, 0])
 	#NIVELES
 	if level == 1:
@@ -578,7 +620,7 @@ while True:
 		screen.blit(disparo2, [enemigo.disparo3.x-15, enemigo.disparo3.y-15])
 		if animacion_disparo >= 50:
 			animacion_disparo = 0
-	if level == 2 or level == 3:
+	if level == 2 or level == 3 or level == 4:
 		if animacion_disparo <= 25:
 			screen.blit(disparo1, [enemigo.disparo4.x-15, enemigo.disparo4.y-15])
 		if animacion_disparo > 25:
@@ -597,6 +639,20 @@ while True:
 			screen.blit(disparo2, [enemigo.disparo6.x-15, enemigo.disparo6.y-15])
 			if animacion_disparo >= 50:
 				animacion_disparo = 0
+	if level == 4:
+		if animacion_disparo <= 25:
+			screen.blit(disparo1, [enemigo.disparo7.x-15, enemigo.disparo7.y-15])
+		if animacion_disparo > 25:
+			screen.blit(disparo2, [enemigo.disparo7.x-15, enemigo.disparo7.y-15])
+			if animacion_disparo >= 50:
+				animacion_disparo = 0
+		if animacion_disparo <= 25:
+			screen.blit(disparo1, [enemigo.disparo8.x-15, enemigo.disparo8.y-15])
+		if animacion_disparo > 25:
+			screen.blit(disparo2, [enemigo.disparo8.x-15, enemigo.disparo8.y-15])
+			if animacion_disparo >= 50:
+				animacion_disparo = 0
+
 	#ANIMACION BOSS
 	if boss_attack >= 1000:
 		if animacion_boss <= 100:
@@ -605,6 +661,23 @@ while True:
 			screen.blit(boss2, [enemigo.x-x_boss, enemigo.y-y_boss])
 			if animacion_boss >= 200:
 				animacion_boss = 0
+	#ANIMACION CORAZON
+	if animacion_corazon <= 75:
+		if plataforma.vidas >= 1:
+			screen.blit(corazon1, [1060, 10])
+			if plataforma.vidas >= 2:
+				screen.blit(corazon2, [1140, 10])
+				if plataforma.vidas == 3:
+					screen.blit(corazon1, [1220, 10])
+	if animacion_corazon > 75:
+		if plataforma.vidas >= 1:
+			screen.blit(corazon2, [1060, 10])
+			if plataforma.vidas >= 2:
+				screen.blit(corazon1, [1140, 10])
+				if plataforma.vidas == 3:
+					screen.blit(corazon2, [1220, 10])
+		if animacion_corazon >= 150:
+			animacion_corazon = 0
 	plataforma.Disparar(plataforma)
 	display.flip()
 	if plataforma.vidas <= 0:
