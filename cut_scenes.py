@@ -23,10 +23,12 @@ class CutSceneZero:
 
         # Dialogue
         self.text = {
-            'one': "Algo está pasando en la selva tropical...",
-            'two': "Los animales están atacando sin motivo y se muestran muy agresivos.",
-            'three': "Perry quiere descubrir lo que ocurre.",
-            'four': "¿Está dispuesto a ayudarle para llegar al fondo del asunto?"
+            'one': "Something is happening in the rainforest...",
+            'two': "The animals are attacking for no reason and they are very aggressive.",
+            'three': "Perry wants to find out what's going on.",
+            'four': "Are you willing to help him get to the bottom of the matter?",
+            'move': "MOVE: WASD",
+            'volume': "VOLUME: ARROWS",
         }
         self.text_counter = 0
 
@@ -75,6 +77,24 @@ class CutSceneZero:
         return self.cut_scene_running
 
     def draw(self, screen):
+
+        draw_text(
+            screen,
+            self.text['move'][0:len(self.text['move'])],
+            50,
+            (236, 157, 83),
+            50,
+            20
+        )
+
+        draw_text(
+            screen,
+            self.text['volume'][0:len(self.text['volume'])],
+            50,
+            (236, 157, 83),
+            900,
+            20
+        )
         
         if self.step == 0:
             draw_text(
@@ -129,8 +149,8 @@ class CutSceneOneStart:
 
         # Dialogue
         self.text = {
-            'one': "Jajaja, un patito.",
-            'two': "No durarás ni un día en esta selva.",
+            'one': "Hahaha, a duckling.",
+            'two': "You won't last a day in this jungle.",
         }
         self.text_counter = 0
 
@@ -195,9 +215,9 @@ class CutSceneOneFinal:
 
         # Dialogue
         self.text = {
-            'one': "Auch, ¿qué ha pasado?",
-            'two': "Me ha atacado algo en el estanque y perdí la conciencia.",
-            'three': "Iré a descansar, ¡suerte en tu aventura!"
+            'one': "Ouch, what happened?",
+            'two': "Something attacked me in the pond and I lost consciousness.",
+            'three': "I'll go rest, good luck on your adventure!"
         }
         self.text_counter = 0
 
@@ -281,8 +301,8 @@ class CutSceneTwoStart:
 
         # Dialogue
         self.text = {
-            'one': "¿Otra vez tú?, de esta sí que no pasas",
-            'two': "No cualquiera tiene la agilidad para esquivar las conchas.",
+            'one': "You again? You can't pass this one.",
+            'two': "Not everyone has the agility to avoid the shells.",
         }
         self.text_counter = 0
 
@@ -347,9 +367,9 @@ class CutSceneTwoFinal:
 
         # Dialogue
         self.text = {
-            'one': "Uff, ¡qué dolor de cabeza!",
-            'two': "Me atacó una medusa en la playa y no recuerdo nada.",
-            'three': "¡Ostras, mis huevos tienen que estar a punto de eclosionar! Me voy."
+            'one': "Uff, what a headache!",
+            'two': "I was attacked by a jellyfish on the beach and I don't remember anything.",
+            'three': "Damn, my eggs have to be ready to hatch! Bye."
         }
         self.text_counter = 0
 
@@ -433,8 +453,8 @@ class CutSceneThreeStart:
 
         # Dialogue
         self.text = {
-            'one': "Bajo el agua no creo que seas tan bueno patito.",
-            'two': "Cuidado con los tentáculos jajaja.",
+            'one': "Under water I don't think you're that good, little duck.",
+            'two': "Be careful with the tentacles hahaha.",
         }
         self.text_counter = 0
 
@@ -499,9 +519,9 @@ class CutSceneThreeFinal:
 
         # Dialogue
         self.text = {
-            'one': "Perdona, no se que me ha pasado, pero creo que te puedo ayudar.",
-            'two': "Detrás de esa roca hay una cueva secreta.",
-            'three': "Ahí se esconde lo que estás buscando."
+            'one': "Sorry, I don't know what happened to me, but I think I can help you.",
+            'two': "Behind that rock is a secret cave.",
+            'three': "What you are looking for is hidden there."
         }
         self.text_counter = 0
 
@@ -585,9 +605,9 @@ class CutSceneFourStart:
 
         # Dialogue
         self.text = {
-            'one': "No me voy a molestar ni en moverme de aquí.",
-            'two': "Mis pequeños se encargarán",
-            'three': "¡CHICOS ATACAD!"
+            'one': "I'm not even going to bother moving from here.",
+            'two': "My little ones will take care.",
+            'three': "ATTACK GUYS!"
         }
         self.text_counter = 0
 
@@ -671,9 +691,9 @@ class CutSceneFourFinal:
 
         # Dialogue
         self.text = {
-            'one': "Chicos vamonos de aquí.",
-            'two': "Desde que llegó es cosa solo han pasado cosas malas.",
-            'three': "No te recomiendo entrar ahí solo patito..."
+            'one': "Guys let's get out of here.",
+            'two': "Since this thing arrived, only bad things have happened.",
+            'three': "I don't recommend you go in there alone ducky..."
         }
         self.text_counter = 0
 
@@ -812,14 +832,14 @@ class CutSceneFiveFinal:
         pressed = key.get_pressed()
         space = pressed[K_SPACE]
         
-        if self.time < 100:
+        if self.time < 750:
             self.time += 1
 
         if self.step == 0:
             if int(self.text_counter) < len(self.text['one']):
                 self.text_counter += 0.4
             else:
-                if space and self.time == 100:
+                if space and self.time == 750:
                     self.cut_scene_running = False
 
         return self.cut_scene_running
@@ -834,6 +854,112 @@ class CutSceneFiveFinal:
                 (255, 255, 255),
                 50,
                 640
+            )
+
+class CutSceneSix:
+    
+    def __init__(self, player):
+
+        # Variables
+        self.name = 'six'
+        self.step = 0
+        self.timer = time.get_ticks()
+        self.cut_scene_running = True
+        self.time = 0
+
+        # Dialogue
+        self.text = {
+            'one': "Thanks for playing :)",
+            'two': "Game by Zero2680",
+            'three': "Music by bluelike_u (Pixabay)",
+            'four': "Press space to leave."
+        }
+        self.text_counter = 0
+
+    def update(self):
+
+        pressed = key.get_pressed()
+        space = pressed[K_SPACE]
+        
+        if self.time < 100:
+            self.time += 1
+
+        if self.step == 0:
+            if int(self.text_counter) < len(self.text['one']):
+                self.text_counter += 0.4
+            else:
+                if space:
+                    self.step = 1
+                    self.time = 0
+                    self.text_counter = 0
+
+        if self.step == 1:
+            if int(self.text_counter) < len(self.text['two']):
+                self.text_counter += 0.4
+            else:
+                if space and self.time == 100:
+                    self.step = 2
+                    self.time = 0
+                    self.text_counter = 0
+        
+        if self.step == 2:
+            if int(self.text_counter) < len(self.text['three']):
+                self.text_counter += 0.4
+            else:
+                if space and self.time == 100:
+                    self.step = 3
+                    self.time = 0
+                    self.text_counter = 0
+
+        if self.step == 3:
+            if int(self.text_counter) < len(self.text['four']):
+                self.text_counter += 0.4
+            else:
+                if space and self.time == 100:
+                    self.cut_scene_running = False
+
+        return self.cut_scene_running
+    
+    def draw(self, screen):
+        
+        if self.step == 0:
+            draw_text(
+                screen,
+                self.text['one'][0:int(self.text_counter)],
+                50,
+                (255, 255, 255),
+                50,
+                650
+            )
+
+        if self.step == 1:
+            draw_text(
+                screen,
+                self.text['two'][0:int(self.text_counter)],
+                50,
+                (255, 255, 255),
+                50,
+                650
+            )
+        
+        if self.step == 2:
+            draw_text(
+                screen,
+                self.text['three'][0:int(self.text_counter)],
+                50,
+                (255, 255, 255),
+                50,
+                650
+            )
+
+        if self.step == 3:
+            draw_text(
+                screen,
+                self.text['four'][0:int(self.text_counter)],
+                50,
+                (255, 255, 255),
+                50,
+                650
             )
 
 class CutSceneManager:
