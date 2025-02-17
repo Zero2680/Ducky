@@ -25,7 +25,7 @@ class CutSceneZero:
         self.text = {
             'one': "Something is happening in the rainforest...",
             'two': "The animals are attacking for no reason and they are very aggressive.",
-            'three': "Perry wants to find out what's going on.",
+            'three': "Ducky wants to find out what's going on.",
             'four': "Are you willing to help him get to the bottom of the matter?",
             'move': "MOVE: WASD",
             'volume': "VOLUME: ARROWS",
@@ -693,7 +693,7 @@ class CutSceneFourFinal:
         self.text = {
             'one': "Guys let's get out of here.",
             'two': "Since this thing arrived, only bad things have happened.",
-            'three': "I don't recommend you go in there alone ducky..."
+            'three': "I don't recommend you go in there alone Ducky..."
         }
         self.text_counter = 0
 
