@@ -2,7 +2,9 @@ from pygame import *
 from random import *
 from cut_scenes import *
 screen = display.set_mode((1280, 720), FULLSCREEN)
-display.set_caption('Juego')
+display.set_caption('Ducky')
+icono = image.load("ducky_images/icono_ducky.png")
+display.set_icon(icono)
 
 class Objeto(sprite.Sprite):
 	def __init__(self, x, y, ancho, largo, color, vidas, direccionx, direcciony):
@@ -555,7 +557,6 @@ medusa_boss1 = transform.scale(image.load("ducky_images/medusa_boss1.png"), (300
 medusa_boss2 = transform.scale(image.load("ducky_images/medusa_boss2.png"), (300, 300))
 medusa1 = transform.scale(image.load("ducky_images/medusa1.png"), (50, 50))
 medusa2 = transform.scale(image.load("ducky_images/medusa2.png"), (50, 50))
-medusa3 = transform.scale(image.load("ducky_images/medusa3.png"), (50, 50))
 tentaculo = transform.scale(image.load("ducky_images/tentaculo.png"), (300, 720))
 selva = transform.scale(image.load("ducky_images/selva.jpg").convert(), (1280, 720))
 mono1 = transform.scale(image.load("ducky_images/liana1.png"), (300, 300))
@@ -568,7 +569,6 @@ caparazon1p = transform.scale(image.load("ducky_images/caparazon1p.png"), (50, 5
 caparazon2p = transform.scale(image.load("ducky_images/caparazon2p.png"), (50, 50))
 medusa1p = transform.scale(image.load("ducky_images/medusa1p.png"), (50, 50))
 medusa2p = transform.scale(image.load("ducky_images/medusa2p.png"), (50, 50))
-medusa3p = transform.scale(image.load("ducky_images/medusa3p.png"), (50, 50))
 murcielago1p = transform.scale(image.load("ducky_images/murcielago1p.png"), (50, 50))
 murcielago2p = transform.scale(image.load("ducky_images/murcielago2p.png"), (50, 50))
 tentaculop = transform.scale(image.load("ducky_images/tentaculop.png"), (300, 720))
