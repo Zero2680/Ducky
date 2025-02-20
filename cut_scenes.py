@@ -4,7 +4,7 @@ init()
 
 
 def draw_text(screen, text, size, color, x, y):
-    main_font = font.SysFont(None, size)
+    main_font = font.SysFont('cambria', size)
     text_surface = main_font.render(text, True, color)
     text_rect = text_surface.get_rect()
     text_rect.topleft = (x, y)
@@ -81,7 +81,7 @@ class CutSceneZero:
         draw_text(
             screen,
             self.text['move'][0:len(self.text['move'])],
-            50,
+            35,
             (236, 157, 83),
             50,
             20
@@ -90,7 +90,7 @@ class CutSceneZero:
         draw_text(
             screen,
             self.text['volume'][0:len(self.text['volume'])],
-            50,
+            35,
             (236, 157, 83),
             900,
             20
@@ -100,7 +100,7 @@ class CutSceneZero:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -110,7 +110,7 @@ class CutSceneZero:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -120,7 +120,7 @@ class CutSceneZero:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -130,7 +130,7 @@ class CutSceneZero:
             draw_text(
                 screen,
                 self.text['four'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -186,7 +186,7 @@ class CutSceneOneStart:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -196,7 +196,7 @@ class CutSceneOneStart:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -262,7 +262,7 @@ class CutSceneOneFinal:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -272,7 +272,7 @@ class CutSceneOneFinal:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -282,7 +282,7 @@ class CutSceneOneFinal:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -338,7 +338,7 @@ class CutSceneTwoStart:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -348,7 +348,7 @@ class CutSceneTwoStart:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -414,7 +414,7 @@ class CutSceneTwoFinal:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -424,7 +424,7 @@ class CutSceneTwoFinal:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -434,7 +434,7 @@ class CutSceneTwoFinal:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -490,7 +490,7 @@ class CutSceneThreeStart:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -500,7 +500,7 @@ class CutSceneThreeStart:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -566,7 +566,7 @@ class CutSceneThreeFinal:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -576,7 +576,7 @@ class CutSceneThreeFinal:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -586,7 +586,7 @@ class CutSceneThreeFinal:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -652,7 +652,7 @@ class CutSceneFourStart:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -662,7 +662,7 @@ class CutSceneFourStart:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -672,7 +672,7 @@ class CutSceneFourStart:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -738,7 +738,7 @@ class CutSceneFourFinal:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -748,7 +748,7 @@ class CutSceneFourFinal:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -758,7 +758,7 @@ class CutSceneFourFinal:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -804,7 +804,7 @@ class CutSceneFiveStart:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 640
@@ -850,7 +850,7 @@ class CutSceneFiveFinal:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 640
@@ -926,7 +926,7 @@ class CutSceneSix:
             draw_text(
                 screen,
                 self.text['one'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -936,7 +936,7 @@ class CutSceneSix:
             draw_text(
                 screen,
                 self.text['two'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -946,7 +946,7 @@ class CutSceneSix:
             draw_text(
                 screen,
                 self.text['three'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
@@ -956,7 +956,7 @@ class CutSceneSix:
             draw_text(
                 screen,
                 self.text['four'][0:int(self.text_counter)],
-                50,
+                35,
                 (255, 255, 255),
                 50,
                 650
